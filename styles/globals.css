@@ -92,3 +92,12 @@ a:hover {
     padding: 30px 20px;
   }
 }
+#__next {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
