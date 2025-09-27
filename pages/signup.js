@@ -17,6 +17,7 @@ export default function Signup() {
       setSuccess("Signup successful! You can now log in.");
       setEmail("");
       setPassword("");
+      window.location.href = "https://med-sync-five.vercel.app"; 
     } catch (err) {
       setError(err.message);
     }

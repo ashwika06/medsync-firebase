@@ -12,7 +12,7 @@ export default function Login() {
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "/"; // Redirect or reload on login
+      window.location.href = "https://med-sync-five.vercel.app"; // Redirect or reload on login
     } catch (err) {
       setError(err.message);
     }
