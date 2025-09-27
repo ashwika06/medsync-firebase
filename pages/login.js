@@ -1,30 +1,26 @@
 import { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
-export default function Signup() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
-  const handleSignup = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setSuccess("Signup successful! You can now log in.");
-      setEmail("");
-      setPassword("");
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "/"; // Redirect or reload on login
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSignup}>
-      <h2>Sign Up</h2>
+    <form onSubmit={handleLogin}>
+      <h2>Login</h2>
       <input
         type="email"
         placeholder="Email"
@@ -39,9 +35,8 @@ export default function Signup() {
         onChange={e => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Sign Up</button>
+      <button type="submit">Login</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
     </form>
   );
 }
